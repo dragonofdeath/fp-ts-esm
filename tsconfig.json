@@ -2,9 +2,9 @@
   "compilerOptions": {
     "noEmit": true,
     "outDir": "./dist/lib",
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "target": "ES2021",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "lib": [],
     "sourceMap": false,

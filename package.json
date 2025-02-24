@@ -14,9 +14,9 @@
     "test": "npm run lint && npm run prettier && npm run dtslint && npm run vitest && npm run docs",
     "clean": "rimraf ./dist",
     "prebuild": "npm run clean",
-    "build": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json && ts-node scripts/build",
+    "build": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json && echo \"{ \\\"type\\\": \\\"module\\\" }\" > dist/es6/package.json && tsx scripts/build",
     "postbuild": "prettier --loglevel=silent --write \"./dist/**/*.ts\"",
-    "prepublishOnly": "ts-node scripts/pre-publish",
+    "prepublishOnly": "scripts/pre-publish",
     "mocha": "mocha -r ts-node/register test/*.ts",
     "dtslint": "dtslint dtslint",
     "docs": "docs-ts",
@@ -25,6 +25,623 @@
     "dpdm": "dpdm --warning=false --tree=false --exit-code circular:1 -T src/index.ts",
     "vitest": "vitest run",
     "coverage": "vitest run --coverage"
+  },
+  "exports": {
+    ".": {
+      "import": "./es6/index.js",
+      "require": "./lib/index.js",
+      "types": "./es6/index.d.ts"
+    },
+    "./Alt": {
+      "import": "./es6/Alt.js",
+      "require": "./lib/Alt.js",
+      "types": "./es6/Alt.d.ts"
+    },
+    "./Alternative": {
+      "import": "./es6/Alternative.js",
+      "require": "./lib/Alternative.js",
+      "types": "./es6/Alternative.d.ts"
+    },
+    "./Applicative": {
+      "import": "./es6/Applicative.js",
+      "require": "./lib/Applicative.js",
+      "types": "./es6/Applicative.d.ts"
+    },
+    "./Apply": {
+      "import": "./es6/Apply.js",
+      "require": "./lib/Apply.js",
+      "types": "./es6/Apply.d.ts"
+    },
+    "./Array": {
+      "import": "./es6/Array.js",
+      "require": "./lib/Array.js",
+      "types": "./es6/Array.d.ts"
+    },
+    "./Bifunctor": {
+      "import": "./es6/Bifunctor.js",
+      "require": "./lib/Bifunctor.js",
+      "types": "./es6/Bifunctor.d.ts"
+    },
+    "./BooleanAlgebra": {
+      "import": "./es6/BooleanAlgebra.js",
+      "require": "./lib/BooleanAlgebra.js",
+      "types": "./es6/BooleanAlgebra.d.ts"
+    },
+    "./Bounded": {
+      "import": "./es6/Bounded.js",
+      "require": "./lib/Bounded.js",
+      "types": "./es6/Bounded.d.ts"
+    },
+    "./BoundedDistributiveLattice": {
+      "import": "./es6/BoundedDistributiveLattice.js",
+      "require": "./lib/BoundedDistributiveLattice.js",
+      "types": "./es6/BoundedDistributiveLattice.d.ts"
+    },
+    "./BoundedJoinSemilattice": {
+      "import": "./es6/BoundedJoinSemilattice.js",
+      "require": "./lib/BoundedJoinSemilattice.js",
+      "types": "./es6/BoundedJoinSemilattice.d.ts"
+    },
+    "./BoundedLattice": {
+      "import": "./es6/BoundedLattice.js",
+      "require": "./lib/BoundedLattice.js",
+      "types": "./es6/BoundedLattice.d.ts"
+    },
+    "./BoundedM": {
+      "import": "./es6/BoundedM.js",
+      "require": "./lib/BoundedM.js",
+      "types": "./es6/BoundedM.d.ts"
+    },
+    "./Category": {
+      "import": "./es6/Category.js",
+      "require": "./lib/Category.js",
+      "types": "./es6/Category.d.ts"
+    },
+    "./Chain": {
+      "import": "./es6/Chain.js",
+      "require": "./lib/Chain.js",
+      "types": "./es6/Chain.d.ts"
+    },
+    "./ChainRec": {
+      "import": "./es6/ChainRec.js",
+      "require": "./lib/ChainRec.js",
+      "types": "./es6/ChainRec.d.ts"
+    },
+    "./Choice": {
+      "import": "./es6/Choice.js",
+      "require": "./lib/Choice.js",
+      "types": "./es6/Choice.d.ts"
+    },
+    "./Comonad": {
+      "import": "./es6/Comonad.js",
+      "require": "./lib/Comonad.js",
+      "types": "./es6/Comonad.d.ts"
+    },
+    "./Compactable": {
+      "import": "./es6/Compactable.js",
+      "require": "./lib/Compactable.js",
+      "types": "./es6/Compactable.d.ts"
+    },
+    "./Console": {
+      "import": "./es6/Console.js",
+      "require": "./lib/Console.js",
+      "types": "./es6/Console.d.ts"
+    },
+    "./Const": {
+      "import": "./es6/Const.js",
+      "require": "./lib/Const.js",
+      "types": "./es6/Const.d.ts"
+    },
+    "./Contravariant": {
+      "import": "./es6/Contravariant.js",
+      "require": "./lib/Contravariant.js",
+      "types": "./es6/Contravariant.d.ts"
+    },
+    "./Date": {
+      "import": "./es6/Date.js",
+      "require": "./lib/Date.js",
+      "types": "./es6/Date.d.ts"
+    },
+    "./DistributiveLattice": {
+      "import": "./es6/DistributiveLattice.js",
+      "require": "./lib/DistributiveLattice.js",
+      "types": "./es6/DistributiveLattice.d.ts"
+    },
+    "./Either": {
+      "import": "./es6/Either.js",
+      "require": "./lib/Either.js",
+      "types": "./es6/Either.d.ts"
+    },
+    "./EitherT": {
+      "import": "./es6/EitherT.js",
+      "require": "./lib/EitherT.js",
+      "types": "./es6/EitherT.d.ts"
+    },
+    "./Endomorphism": {
+      "import": "./es6/Endomorphism.js",
+      "require": "./lib/Endomorphism.js",
+      "types": "./es6/Endomorphism.d.ts"
+    },
+    "./Eq": {
+      "import": "./es6/Eq.js",
+      "require": "./lib/Eq.js",
+      "types": "./es6/Eq.d.ts"
+    },
+    "./Extend": {
+      "import": "./es6/Extend.js",
+      "require": "./lib/Extend.js",
+      "types": "./es6/Extend.d.ts"
+    },
+    "./Field": {
+      "import": "./es6/Field.js",
+      "require": "./lib/Field.js",
+      "types": "./es6/Field.d.ts"
+    },
+    "./Filterable": {
+      "import": "./es6/Filterable.js",
+      "require": "./lib/Filterable.js",
+      "types": "./es6/Filterable.d.ts"
+    },
+    "./FilterableWithIndex": {
+      "import": "./es6/FilterableWithIndex.js",
+      "require": "./lib/FilterableWithIndex.js",
+      "types": "./es6/FilterableWithIndex.d.ts"
+    },
+    "./Foldable": {
+      "import": "./es6/Foldable.js",
+      "require": "./lib/Foldable.js",
+      "types": "./es6/Foldable.d.ts"
+    },
+    "./FoldableWithIndex": {
+      "import": "./es6/FoldableWithIndex.js",
+      "require": "./lib/FoldableWithIndex.js",
+      "types": "./es6/FoldableWithIndex.d.ts"
+    },
+    "./FromEither": {
+      "import": "./es6/FromEither.js",
+      "require": "./lib/FromEither.js",
+      "types": "./es6/FromEither.d.ts"
+    },
+    "./FromIO": {
+      "import": "./es6/FromIO.js",
+      "require": "./lib/FromIO.js",
+      "types": "./es6/FromIO.d.ts"
+    },
+    "./FromReader": {
+      "import": "./es6/FromReader.js",
+      "require": "./lib/FromReader.js",
+      "types": "./es6/FromReader.d.ts"
+    },
+    "./FromState": {
+      "import": "./es6/FromState.js",
+      "require": "./lib/FromState.js",
+      "types": "./es6/FromState.d.ts"
+    },
+    "./FromTask": {
+      "import": "./es6/FromTask.js",
+      "require": "./lib/FromTask.js",
+      "types": "./es6/FromTask.d.ts"
+    },
+    "./FromThese": {
+      "import": "./es6/FromThese.js",
+      "require": "./lib/FromThese.js",
+      "types": "./es6/FromThese.d.ts"
+    },
+    "./Functor": {
+      "import": "./es6/Functor.js",
+      "require": "./lib/Functor.js",
+      "types": "./es6/Functor.d.ts"
+    },
+    "./FunctorWithIndex": {
+      "import": "./es6/FunctorWithIndex.js",
+      "require": "./lib/FunctorWithIndex.js",
+      "types": "./es6/FunctorWithIndex.d.ts"
+    },
+    "./Group": {
+      "import": "./es6/Group.js",
+      "require": "./lib/Group.js",
+      "types": "./es6/Group.d.ts"
+    },
+    "./HKT": {
+      "import": "./es6/HKT.js",
+      "require": "./lib/HKT.js",
+      "types": "./es6/HKT.d.ts"
+    },
+    "./HeytingAlgebra": {
+      "import": "./es6/HeytingAlgebra.js",
+      "require": "./lib/HeytingAlgebra.js",
+      "types": "./es6/HeytingAlgebra.d.ts"
+    },
+    "./IO": {
+      "import": "./es6/IO.js",
+      "require": "./lib/IO.js",
+      "types": "./es6/IO.d.ts"
+    },
+    "./IOEither": {
+      "import": "./es6/IOEither.js",
+      "require": "./lib/IOEither.js",
+      "types": "./es6/IOEither.d.ts"
+    },
+    "./IOOption": {
+      "import": "./es6/IOOption.js",
+      "require": "./lib/IOOption.js",
+      "types": "./es6/IOOption.d.ts"
+    },
+    "./IORef": {
+      "import": "./es6/IORef.js",
+      "require": "./lib/IORef.js",
+      "types": "./es6/IORef.d.ts"
+    },
+    "./Identity": {
+      "import": "./es6/Identity.js",
+      "require": "./lib/Identity.js",
+      "types": "./es6/Identity.d.ts"
+    },
+    "./Invariant": {
+      "import": "./es6/Invariant.js",
+      "require": "./lib/Invariant.js",
+      "types": "./es6/Invariant.d.ts"
+    },
+    "./JoinSemilattice": {
+      "import": "./es6/JoinSemilattice.js",
+      "require": "./lib/JoinSemilattice.js",
+      "types": "./es6/JoinSemilattice.d.ts"
+    },
+    "./Json": {
+      "import": "./es6/Json.js",
+      "require": "./lib/Json.js",
+      "types": "./es6/Json.d.ts"
+    },
+    "./Lattice": {
+      "import": "./es6/Lattice.js",
+      "require": "./lib/Lattice.js",
+      "types": "./es6/Lattice.d.ts"
+    },
+    "./Magma": {
+      "import": "./es6/Magma.js",
+      "require": "./lib/Magma.js",
+      "types": "./es6/Magma.d.ts"
+    },
+    "./Map": {
+      "import": "./es6/Map.js",
+      "require": "./lib/Map.js",
+      "types": "./es6/Map.d.ts"
+    },
+    "./Monad": {
+      "import": "./es6/Monad.js",
+      "require": "./lib/Monad.js",
+      "types": "./es6/Monad.d.ts"
+    },
+    "./MonadIO": {
+      "import": "./es6/MonadIO.js",
+      "require": "./lib/MonadIO.js",
+      "types": "./es6/MonadIO.d.ts"
+    },
+    "./MonadTask": {
+      "import": "./es6/MonadTask.js",
+      "require": "./lib/MonadTask.js",
+      "types": "./es6/MonadTask.d.ts"
+    },
+    "./MonadThrow": {
+      "import": "./es6/MonadThrow.js",
+      "require": "./lib/MonadThrow.js",
+      "types": "./es6/MonadThrow.d.ts"
+    },
+    "./Monoid": {
+      "import": "./es6/Monoid.js",
+      "require": "./lib/Monoid.js",
+      "types": "./es6/Monoid.d.ts"
+    },
+    "./NaturalTransformation": {
+      "import": "./es6/NaturalTransformation.js",
+      "require": "./lib/NaturalTransformation.js",
+      "types": "./es6/NaturalTransformation.d.ts"
+    },
+    "./NonEmptyArray": {
+      "import": "./es6/NonEmptyArray.js",
+      "require": "./lib/NonEmptyArray.js",
+      "types": "./es6/NonEmptyArray.d.ts"
+    },
+    "./Option": {
+      "import": "./es6/Option.js",
+      "require": "./lib/Option.js",
+      "types": "./es6/Option.d.ts"
+    },
+    "./OptionT": {
+      "import": "./es6/OptionT.js",
+      "require": "./lib/OptionT.js",
+      "types": "./es6/OptionT.d.ts"
+    },
+    "./Ord": {
+      "import": "./es6/Ord.js",
+      "require": "./lib/Ord.js",
+      "types": "./es6/Ord.d.ts"
+    },
+    "./Ordering": {
+      "import": "./es6/Ordering.js",
+      "require": "./lib/Ordering.js",
+      "types": "./es6/Ordering.d.ts"
+    },
+    "./Pointed": {
+      "import": "./es6/Pointed.js",
+      "require": "./lib/Pointed.js",
+      "types": "./es6/Pointed.d.ts"
+    },
+    "./Predicate": {
+      "import": "./es6/Predicate.js",
+      "require": "./lib/Predicate.js",
+      "types": "./es6/Predicate.d.ts"
+    },
+    "./Profunctor": {
+      "import": "./es6/Profunctor.js",
+      "require": "./lib/Profunctor.js",
+      "types": "./es6/Profunctor.d.ts"
+    },
+    "./Random": {
+      "import": "./es6/Random.js",
+      "require": "./lib/Random.js",
+      "types": "./es6/Random.d.ts"
+    },
+    "./Reader": {
+      "import": "./es6/Reader.js",
+      "require": "./lib/Reader.js",
+      "types": "./es6/Reader.d.ts"
+    },
+    "./ReaderEither": {
+      "import": "./es6/ReaderEither.js",
+      "require": "./lib/ReaderEither.js",
+      "types": "./es6/ReaderEither.d.ts"
+    },
+    "./ReaderIO": {
+      "import": "./es6/ReaderIO.js",
+      "require": "./lib/ReaderIO.js",
+      "types": "./es6/ReaderIO.d.ts"
+    },
+    "./ReaderT": {
+      "import": "./es6/ReaderT.js",
+      "require": "./lib/ReaderT.js",
+      "types": "./es6/ReaderT.d.ts"
+    },
+    "./ReaderTask": {
+      "import": "./es6/ReaderTask.js",
+      "require": "./lib/ReaderTask.js",
+      "types": "./es6/ReaderTask.d.ts"
+    },
+    "./ReaderTaskEither": {
+      "import": "./es6/ReaderTaskEither.js",
+      "require": "./lib/ReaderTaskEither.js",
+      "types": "./es6/ReaderTaskEither.d.ts"
+    },
+    "./ReadonlyArray": {
+      "import": "./es6/ReadonlyArray.js",
+      "require": "./lib/ReadonlyArray.js",
+      "types": "./es6/ReadonlyArray.d.ts"
+    },
+    "./ReadonlyMap": {
+      "import": "./es6/ReadonlyMap.js",
+      "require": "./lib/ReadonlyMap.js",
+      "types": "./es6/ReadonlyMap.d.ts"
+    },
+    "./ReadonlyNonEmptyArray": {
+      "import": "./es6/ReadonlyNonEmptyArray.js",
+      "require": "./lib/ReadonlyNonEmptyArray.js",
+      "types": "./es6/ReadonlyNonEmptyArray.d.ts"
+    },
+    "./ReadonlyRecord": {
+      "import": "./es6/ReadonlyRecord.js",
+      "require": "./lib/ReadonlyRecord.js",
+      "types": "./es6/ReadonlyRecord.d.ts"
+    },
+    "./ReadonlySet": {
+      "import": "./es6/ReadonlySet.js",
+      "require": "./lib/ReadonlySet.js",
+      "types": "./es6/ReadonlySet.d.ts"
+    },
+    "./ReadonlyTuple": {
+      "import": "./es6/ReadonlyTuple.js",
+      "require": "./lib/ReadonlyTuple.js",
+      "types": "./es6/ReadonlyTuple.d.ts"
+    },
+    "./Record": {
+      "import": "./es6/Record.js",
+      "require": "./lib/Record.js",
+      "types": "./es6/Record.d.ts"
+    },
+    "./Refinement": {
+      "import": "./es6/Refinement.js",
+      "require": "./lib/Refinement.js",
+      "types": "./es6/Refinement.d.ts"
+    },
+    "./Ring": {
+      "import": "./es6/Ring.js",
+      "require": "./lib/Ring.js",
+      "types": "./es6/Ring.d.ts"
+    },
+    "./Semigroup": {
+      "import": "./es6/Semigroup.js",
+      "require": "./lib/Semigroup.js",
+      "types": "./es6/Semigroup.d.ts"
+    },
+    "./Semigroupoid": {
+      "import": "./es6/Semigroupoid.js",
+      "require": "./lib/Semigroupoid.js",
+      "types": "./es6/Semigroupoid.d.ts"
+    },
+    "./Semiring": {
+      "import": "./es6/Semiring.js",
+      "require": "./lib/Semiring.js",
+      "types": "./es6/Semiring.d.ts"
+    },
+    "./Separated": {
+      "import": "./es6/Separated.js",
+      "require": "./lib/Separated.js",
+      "types": "./es6/Separated.d.ts"
+    },
+    "./Set": {
+      "import": "./es6/Set.js",
+      "require": "./lib/Set.js",
+      "types": "./es6/Set.d.ts"
+    },
+    "./Show": {
+      "import": "./es6/Show.js",
+      "require": "./lib/Show.js",
+      "types": "./es6/Show.d.ts"
+    },
+    "./State": {
+      "import": "./es6/State.js",
+      "require": "./lib/State.js",
+      "types": "./es6/State.d.ts"
+    },
+    "./StateReaderTaskEither": {
+      "import": "./es6/StateReaderTaskEither.js",
+      "require": "./lib/StateReaderTaskEither.js",
+      "types": "./es6/StateReaderTaskEither.d.ts"
+    },
+    "./StateT": {
+      "import": "./es6/StateT.js",
+      "require": "./lib/StateT.js",
+      "types": "./es6/StateT.d.ts"
+    },
+    "./Store": {
+      "import": "./es6/Store.js",
+      "require": "./lib/Store.js",
+      "types": "./es6/Store.d.ts"
+    },
+    "./Strong": {
+      "import": "./es6/Strong.js",
+      "require": "./lib/Strong.js",
+      "types": "./es6/Strong.d.ts"
+    },
+    "./Task": {
+      "import": "./es6/Task.js",
+      "require": "./lib/Task.js",
+      "types": "./es6/Task.d.ts"
+    },
+    "./TaskEither": {
+      "import": "./es6/TaskEither.js",
+      "require": "./lib/TaskEither.js",
+      "types": "./es6/TaskEither.d.ts"
+    },
+    "./TaskOption": {
+      "import": "./es6/TaskOption.js",
+      "require": "./lib/TaskOption.js",
+      "types": "./es6/TaskOption.d.ts"
+    },
+    "./TaskThese": {
+      "import": "./es6/TaskThese.js",
+      "require": "./lib/TaskThese.js",
+      "types": "./es6/TaskThese.d.ts"
+    },
+    "./These": {
+      "import": "./es6/These.js",
+      "require": "./lib/These.js",
+      "types": "./es6/These.d.ts"
+    },
+    "./TheseT": {
+      "import": "./es6/TheseT.js",
+      "require": "./lib/TheseT.js",
+      "types": "./es6/TheseT.d.ts"
+    },
+    "./Traced": {
+      "import": "./es6/Traced.js",
+      "require": "./lib/Traced.js",
+      "types": "./es6/Traced.d.ts"
+    },
+    "./Traversable": {
+      "import": "./es6/Traversable.js",
+      "require": "./lib/Traversable.js",
+      "types": "./es6/Traversable.d.ts"
+    },
+    "./TraversableWithIndex": {
+      "import": "./es6/TraversableWithIndex.js",
+      "require": "./lib/TraversableWithIndex.js",
+      "types": "./es6/TraversableWithIndex.d.ts"
+    },
+    "./Tree": {
+      "import": "./es6/Tree.js",
+      "require": "./lib/Tree.js",
+      "types": "./es6/Tree.d.ts"
+    },
+    "./Tuple": {
+      "import": "./es6/Tuple.js",
+      "require": "./lib/Tuple.js",
+      "types": "./es6/Tuple.d.ts"
+    },
+    "./Unfoldable": {
+      "import": "./es6/Unfoldable.js",
+      "require": "./lib/Unfoldable.js",
+      "types": "./es6/Unfoldable.d.ts"
+    },
+    "./ValidationT": {
+      "import": "./es6/ValidationT.js",
+      "require": "./lib/ValidationT.js",
+      "types": "./es6/ValidationT.d.ts"
+    },
+    "./Witherable": {
+      "import": "./es6/Witherable.js",
+      "require": "./lib/Witherable.js",
+      "types": "./es6/Witherable.d.ts"
+    },
+    "./Writer": {
+      "import": "./es6/Writer.js",
+      "require": "./lib/Writer.js",
+      "types": "./es6/Writer.d.ts"
+    },
+    "./WriterT": {
+      "import": "./es6/WriterT.js",
+      "require": "./lib/WriterT.js",
+      "types": "./es6/WriterT.d.ts"
+    },
+    "./Zero": {
+      "import": "./es6/Zero.js",
+      "require": "./lib/Zero.js",
+      "types": "./es6/Zero.d.ts"
+    },
+    "./boolean": {
+      "import": "./es6/boolean.js",
+      "require": "./lib/boolean.js",
+      "types": "./es6/boolean.d.ts"
+    },
+    "./function": {
+      "import": "./es6/function.js",
+      "require": "./lib/function.js",
+      "types": "./es6/function.d.ts"
+    },
+    "./index": {
+      "import": "./es6/index.js",
+      "require": "./lib/index.js",
+      "types": "./es6/index.d.ts"
+    },
+    "./internal": {
+      "import": "./es6/internal.js",
+      "require": "./lib/internal.js",
+      "types": "./es6/internal.d.ts"
+    },
+    "./number": {
+      "import": "./es6/number.js",
+      "require": "./lib/number.js",
+      "types": "./es6/number.d.ts"
+    },
+    "./pipeable": {
+      "import": "./es6/pipeable.js",
+      "require": "./lib/pipeable.js",
+      "types": "./es6/pipeable.d.ts"
+    },
+    "./string": {
+      "import": "./es6/string.js",
+      "require": "./lib/string.js",
+      "types": "./es6/string.d.ts"
+    },
+    "./struct": {
+      "import": "./es6/struct.js",
+      "require": "./lib/struct.js",
+      "types": "./es6/struct.d.ts"
+    },
+    "./void": {
+      "import": "./es6/void.js",
+      "require": "./lib/void.js",
+      "types": "./es6/void.d.ts"
+    }
   },
   "repository": {
     "type": "git",
@@ -59,6 +676,7 @@
     "rimraf": "2.6.2",
     "ts-node": "^8.0.2",
     "tslint": "5.11.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.5.2",
     "vitest": "^1.6.0"
   },
