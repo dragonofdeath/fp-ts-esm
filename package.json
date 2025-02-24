@@ -1,5 +1,5 @@
 {
-  "name": "fp-ts",
+  "name": "fp-ts-esm",
   "version": "2.16.9",
   "description": "Functional programming in TypeScript",
   "main": "./lib/index.js",
@@ -645,14 +645,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gcanti/fp-ts.git"
+    "url": "https://github.com/dragonofdeath/fp-ts-esm.git"
   },
-  "author": "Giulio Canti <giulio.canti@gmail.com>",
+  "author": "dragonofdeath",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gcanti/fp-ts/issues"
+    "url": "https://github.com/dragonofdeath/fp-ts-esm/issues"
   },
-  "homepage": "https://github.com/gcanti/fp-ts",
+  "homepage": "https://github.com/dragonofdeath/fp-ts-esm",
   "devDependencies": {
     "@effect/dtslint": "^0.1.0",
     "@effect/language-service": "^0.0.19",
